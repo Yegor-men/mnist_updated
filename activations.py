@@ -1,41 +1,36 @@
-class Activation:
-    def __init__(self, function):
-        self.activation_function = function
+import numpy as np
 
-    def apply(self, data):
-        if self.activation_function == "none":
+class Activation:
+    def __init__(self):
+        pass
+
+    def apply(self, data, function):
+        if function == "none":
             return data
-        elif self.activation_function == 'relu':
+        elif function == 'relu':
             return np.maximum(data, 0)
-        elif self.activation_function == 'leaky_relu':
+        elif function == 'leaky_relu':
             return np.maximum(0.01 * data, data)
-        elif self.activation_function == 'sigmoid':
+        elif function == 'sigmoid':
             return 1 / (1 + np.exp(-data))
-        elif self.activation_function == 'tanh':
+        elif function == 'tanh':
             return np.tanh(data)
-        elif self.activation_function == 'softmax':
+        elif function == 'softmax':
             exp_data = np.exp(data)
             return exp_data / np.sum(exp_data)
     
-    def unapply(self, data):
-        if self.activation_function == "none":
+    def unapply(self, data, function):
+        if function == "none":
             return data
-        elif self.activation_function == 'relu':
-            return np.where(data > 0, data, 0)
-        elif self.activation_function == 'leaky_relu':
-            return np.where(data > 0, data, 0.01 * data)
-        elif self.activation_function == 'sigmoid':
-            return np.log(data / (1 - data))
-        elif self.activation_function == 'tanh':
-            return np.arctanh(data)
-        elif self.activation_function == 'softmax':
+        elif function == 'relu':
+            return np.where(data > 0, 1, 0)
+        elif function == 'leaky_relu':
+            return np.where(data > 0, 1, 0.01)
+        elif function == 'sigmoid':
+            return data * (1 - data)
+        elif function == 'tanh':
+            return 1 - data ** 2
+        elif function == 'softmax':
             return data
 
-
-none = Activation('none')
-relu = Activation('relu')
-leaky_relu = Activation('leaky_relu')
-sigmoid = Activation('sigmoid')
-tanh = Activation('tanh')
-softmax = Activation('softmax')
-
+activation_function = Activation()
