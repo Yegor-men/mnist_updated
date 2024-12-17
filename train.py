@@ -5,7 +5,6 @@ import pickle
 
 import numpy as np
 np.random.seed(1)
-random.seed(1)
 
 
 class Network:
@@ -43,16 +42,6 @@ class Network:
             pickle.dump(self, f)
 
 
-
-
-
-
-
-
-
-
-
-
 architecture = {
     "layer_neurons": [784, 20, 20, 10],
     "layer_activations": ['none', 'leaky_relu', 'leaky_relu', 'softmax'],
@@ -60,4 +49,4 @@ architecture = {
 
 mnist_network = Network(architecture)
 
-print(mnist_network.calculate_params())
+print(mnist_network.calculate_parameter_count())

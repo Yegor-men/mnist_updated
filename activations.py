@@ -29,8 +29,6 @@ class Activation:
         elif self.activation_function == 'tanh':
             return np.arctanh(data)
         elif self.activation_function == 'softmax':
-            # Note: unapplying softmax is not well-defined, as it's not invertible
-            # This implementation returns the input data unchanged
             return data
 
 
@@ -40,3 +38,4 @@ leaky_relu = Activation('leaky_relu')
 sigmoid = Activation('sigmoid')
 tanh = Activation('tanh')
 softmax = Activation('softmax')
+

@@ -5,5 +5,5 @@ import tensorflow as tf
 trainX = trainX.reshape(-1, 784)
 testX = testX.reshape(-1, 784)
 
-trainX /= 255.0
-testX /= 255.0
+trainX = trainX / 255.0
+testX = trainY / 255.0
